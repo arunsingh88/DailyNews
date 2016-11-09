@@ -1,21 +1,19 @@
 package com.arunpwc.newspaper;
 
 import android.content.Intent;
-import android.os.Handler;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebBackForwardList;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.ShareActionProvider;
+import android.support.v7.widget.ShareActionProvider;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
@@ -26,10 +24,12 @@ public class DetailNews extends AppCompatActivity {
 
     private WebView mWebview;
     private String newsURL,newsTitle,currentURL;
+    private String HASHTAG=" -via #DailyNewsApp";
     private ProgressBar progressBar;
     private Bundle bundle;
     private LinearLayout adViewTop;
     private AdView adView;
+    private Intent sendIntent;
     private ShareActionProvider mShareActionProvider;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,7 @@ public class DetailNews extends AppCompatActivity {
             newsURL= bundle.getString("NEWS_URL");
             newsTitle=bundle.getString("NEWS_TITLE");
         }
+        currentURL=newsURL;
 
         mWebview = (WebView) findViewById(R.id.webView);
         progressBar=(ProgressBar)findViewById(R.id.progressBar);
@@ -75,12 +76,23 @@ public class DetailNews extends AppCompatActivity {
         mWebview.loadUrl(newsURL);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.detail_activity_menu, menu);
-        return true;
-    }
+   @Override
+   public boolean onCreateOptionsMenu(Menu menu) {
+       // Inflate menu resource file.
+       getMenuInflater().inflate(R.menu.detail_activity_menu, menu);
+       // Locate MenuItem with ShareActionProvider
+       MenuItem item = menu.findItem(R.id.share);
+       // Fetch and store ShareActionProvider
+       mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
+       mShareActionProvider.setOnShareTargetSelectedListener(new ShareActionProvider.OnShareTargetSelectedListener() {
+           @Override
+           public boolean onShareTargetSelected(ShareActionProvider source, Intent intent) {
+               return false;
+           }
+       });
+       // Return true to display menu
+       return true;
+   }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -90,32 +102,22 @@ public class DetailNews extends AppCompatActivity {
                 // app icon in action bar clicked; go home
                 this.finish();
                 return true;
-            case R.id.action_share:
-                shareNews(currentURL);
-                return true;
-            case R.id.action_settings:
-                shareNews(currentURL);
+            case R.id.share:
+               // shareNews(currentURL);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-
     private class NewsWebViewClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             view.loadUrl(url);
             currentURL=url;
+            mShareActionProvider.setShareIntent(shareNews(currentURL));
             return true;
         }
     }
-    // Call to update the share intent
-    private void setShareIntent(Intent shareIntent) {
-        if (mShareActionProvider != null) {
-            mShareActionProvider.setShareIntent(shareIntent);
-        }
-    }
-
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK) && mWebview.canGoBack()) {
             mWebview.goBack();
@@ -124,13 +126,13 @@ public class DetailNews extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    private void shareNews(String currentURL)
+    private Intent shareNews(String currentURL)
     {
-        Intent sendIntent = new Intent();
+        sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, currentURL+" -via DailyNews app");
+        sendIntent.putExtra(Intent.EXTRA_TEXT, currentURL+HASHTAG);
         sendIntent.setType("text/plain");
-        startActivity(Intent.createChooser(sendIntent,newsTitle));
+        return sendIntent;
     }
 
     @Override
@@ -148,5 +150,7 @@ public class DetailNews extends AppCompatActivity {
         }
         super.onDestroy();
     }
+
+
 
 }

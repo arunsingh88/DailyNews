@@ -1,5 +1,35 @@
 <resources>
     <string name="app_name">DailyNews</string>
+    <string name="action_rate">Rate App</string>
+    <string name="action_share">Share</string>
+    <string name="banner_home_footer">ca-app-pub-9708395996794900/1311500071</string>
+
+
+    <!--Hindi News Paper-->
+    <string name="amar_ujala_hi">अमर उजाला</string>
+    <string name="dainik_jagran_hi">दैनिक जागरण</string>
+    <string name="dainik_bhaskar_hi">दैनिक भास्कर</string>
+    <string name="navbahrat_times_hi">नवभारत टाइम्स</string>
+    <string name="hindustan_hi">हिंदुस्तान</string>
+    <string name="rajastahn_patrika">राजस्थान पत्रिका</string>
+
+    <!--English News Paper-->
+    <string name="toi_en">TIMES OF INDIA</string>
+    <string name="hindustan_en">HINDUSTAN TIMES</string>
+    <string name="indian_express_en">THE INDIAN EXPRESS</string>
+    <string name="first_post_en">FIRSTPOST</string>
+    <string name="hindu_en">THE HINDU</string>
+    <string name="economicTimes_en">THE ECONOMIC TIMES</string>
+
+    <!--Malyalam Newspaper-->
+    <string name="manorama_mal">മലയാള മനോരമ</string>
+    <string name="matrubhumi_mal">മാതൃഭൂമി</string>
+    <string name="deshabhimani_mal">ദേശാഭിമാനി</string>
+    <string name="madhyamam_mal">മാധ്യമം</string>
+    <string name="keralaKaumudi_mal">കേരളകൗമുദി</string>
+    <string name="mangalam_mal">മംഗളം</string>
+
+
     <string name="next">NEXT</string>
     <string name="skip">SKIP</string>
     <string name="start">GOT IT</string>
@@ -19,4 +49,7 @@
 
     <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
     <string name="play_again">Play Again</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

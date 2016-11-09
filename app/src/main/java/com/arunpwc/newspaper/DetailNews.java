@@ -57,6 +57,7 @@ public class DetailNews extends AppCompatActivity {
         progressBar.setProgress(0);
         setTitle(newsTitle);
 
+        mWebview.setWebViewClient(new NewsWebViewClient());
         mWebview.setWebChromeClient(new WebChromeClient() {
             public void onProgressChanged(WebView view, final int progress)
             {
@@ -69,7 +70,6 @@ public class DetailNews extends AppCompatActivity {
                 }
             }
         });
-        mWebview.setWebViewClient(new NewsWebViewClient());
         mWebview.getSettings().setJavaScriptEnabled(true);
         mWebview.getSettings().setBuiltInZoomControls(true);
         mWebview.loadUrl(newsURL);

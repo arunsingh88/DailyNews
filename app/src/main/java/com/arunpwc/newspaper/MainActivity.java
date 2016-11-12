@@ -35,9 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private RelativeLayout toiBtn, hinduBtn, firstpostBtn, indianexpressBtn;
-    private ImageView imageView;
-    private Intent intent;
+
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -50,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //getSupportActionBar().setTitle("DailyNews");
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
         }
@@ -102,10 +100,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new HindiNews(), "HINDI");
-        adapter.addFragment(new EnglishFragment(), "ENGLISH");
-        adapter.addFragment(new TamilFragment(), "TAMIL");
-        adapter.addFragment(new MalyalamFragment(), "MALAYALAM");
+        adapter.addFragment(new HindiNews(), getResources().getString(R.string.hindi));
+        adapter.addFragment(new EnglishFragment(), getResources().getString(R.string.english));
+        adapter.addFragment(new TamilFragment(), getResources().getString(R.string.tamil));
+        adapter.addFragment(new MalyalamFragment(), getResources().getString(R.string.malayalam));
         viewPager.setPageTransformer(false, new FadePageTransformer());
         viewPager.setAdapter(adapter);
     }

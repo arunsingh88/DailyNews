@@ -4,6 +4,14 @@
     <string name="action_share">Share</string>
     <string name="banner_home_footer">ca-app-pub-9708395996794900/1311500071</string>
 
+    <!--Language Support-->
+    <string name="english">ENGLISH</string>
+    <string name="hindi">हिन्दी</string>
+    <string name="tamil">தமிழ்</string>
+    <string name="malayalam">മലയാളം</string>
+    <string name="telugu">తెలుగు</string>
+    <string name="kannada">ಕನ್ನಡ</string>
+
     <!--Hindi News Paper-->
     <string name="amar_ujala_hi">अमर उजाला</string>
     <string name="dainik_jagran_hi">दैनिक जागरण</string>

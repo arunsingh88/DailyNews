@@ -14,7 +14,6 @@ import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.support.v7.widget.ShareActionProvider;
-import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -59,6 +58,7 @@ public class DetailNews extends AppCompatActivity {
         setTitle(newsTitle);
 
         mWebview.setWebViewClient(new NewsWebViewClient());
+       // mShareActionProvider.setShareIntent(shareNews(currentURL));
         mWebview.setWebChromeClient(new WebChromeClient() {
             public void onProgressChanged(WebView view, final int progress)
             {
@@ -71,9 +71,11 @@ public class DetailNews extends AppCompatActivity {
                 }
             }
         });
+
         mWebview.getSettings().setJavaScriptEnabled(true);
         mWebview.getSettings().setBuiltInZoomControls(true);
         mWebview.loadUrl(newsURL);
+        //mShareActionProvider.setShareIntent(shareNews(currentURL));
     }
 
    @Override

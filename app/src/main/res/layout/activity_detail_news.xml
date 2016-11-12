@@ -34,6 +34,6 @@
             android:layout_alignParentBottom="true"
             ads:adSize="BANNER"
             ads:adUnitId="@string/banner_home_footer"/>
-        </LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>

@@ -1,0 +1,33 @@
+{
+  "hindi": [{
+    "name": "अमर उजाला",
+    "url": "http://www.amarujala.com/",
+    "icon": "amar_ujala_icon",
+    "bgColor": "dot_dark_screen1_translucent"
+  }, {
+    "name": "दैनिक जागरण",
+    "url": "http://www.jagran.com/",
+    "icon": "dainik_jagran_icon",
+    "bgColor": "dot_dark_screen1_translucent"
+  }, {
+    "name": "दैनिक भास्कर",
+    "url": "http://m.bhaskar.com/",
+    "icon": "dainik_bhaskar_icon",
+    "bgColor": "dot_dark_screen1_translucent"
+  }, {
+    "name": "नवभारत टाइम्स",
+    "url": "http://m.navbharattimes.indiatimes.com/",
+    "icon": "navbharat_times_icon",
+    "bgColor": "dot_dark_screen1_translucent"
+  }, {
+    "name": "हिंदुस्तान",
+    "url": "http://m.livehindustan.com/",
+    "icon": "hindustan_hindi_icon",
+    "bgColor": "dot_dark_screen1_translucent"
+  }, {
+    "name": "राजस्थान पत्रिका",
+    "url": "http://m.rajasthanpatrika.patrika.com/",
+    "icon": "rajasthan_patrika_icon",
+    "bgColor": "dot_dark_screen1_translucent"
+  }]
+}

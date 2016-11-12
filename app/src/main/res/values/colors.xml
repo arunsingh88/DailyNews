@@ -5,6 +5,14 @@
     <color name="colorPrimaryDark_transparent">#BF303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <!--Tiles Color-->
+    <color name="tile1">#BF3395ff</color>
+    <color name="tile2">#BFd1395c</color>
+    <color name="tile3">#75FF9800</color>
+    <color name="tile4">#75009688</color>
+    <color name="tile5">#75F44336</color>
+    <color name="tile6">#75795548</color>
+
     <!-- Screens background color-->
     <color name="bg_screen1">#f64c73</color>
     <color name="bg_screen2">#20d2bb</color>
@@ -22,6 +30,7 @@
     <!-- dots active colors -->
     <color name="dot_light_screen1">#f98da5</color>
     <color name="dot_light_screen2">#8cf9eb</color>
+    <color name="dot_light_screen2_translucent">#BF8cf9eb</color>
     <color name="dot_light_screen3">#93c6fd</color>
     <color name="dot_light_screen4">#e4b5fc</color>
 

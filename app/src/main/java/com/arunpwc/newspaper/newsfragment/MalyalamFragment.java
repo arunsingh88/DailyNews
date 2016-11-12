@@ -1,95 +1,61 @@
 package com.arunpwc.newspaper.newsfragment;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-
-import com.arunpwc.newspaper.DetailNews;
 import com.arunpwc.newspaper.R;
+import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class MalyalamFragment extends Fragment {
+    private GridLayoutManager lLayout;
+    private RecyclerView recyclerView;
+    private RecyclerViewAdapter recyclerViewAdapter;
+    private int COLUMN_COUNT=2;
 
-public class MalyalamFragment extends Fragment implements View.OnClickListener {
-
-    private ImageView iManorama,iMatrubhumi,iDeshabhimani,iMadhyamam,iKerlakaumudi,iMangalam;
-    private Intent intent;
     public MalyalamFragment() {
         // Required empty public constructor
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View rootView=inflater.inflate(R.layout.fragment_malyalam, container, false);
-        intent=new Intent(getActivity(),DetailNews.class);
 
-        iManorama=(ImageView) rootView.findViewById(R.id.iManorama);
-        iManorama.setOnClickListener(this);
-        iMatrubhumi=(ImageView)rootView.findViewById(R.id.iMatrubhumi);
-        iMatrubhumi.setOnClickListener(this);
-        iDeshabhimani=(ImageView) rootView.findViewById(R.id.iDeshabhimani);
-        iDeshabhimani.setOnClickListener(this);
-        iMadhyamam=(ImageView)rootView.findViewById(R.id.iMadhyamam);
-        iMadhyamam.setOnClickListener(this);
-        iKerlakaumudi=(ImageView) rootView.findViewById(R.id.iKerlakaumudi);
-        iKerlakaumudi.setOnClickListener(this);
-        iMangalam=(ImageView)rootView.findViewById(R.id.iMangalam);
-        iMangalam.setOnClickListener(this);
+        // Inflate the layout for this fragment
+        View rootView = inflater.inflate(R.layout.fragment_news, container, false);
+        List<NewsObject> tamilNewsList = getAllItemList();
+
+        lLayout = new GridLayoutManager(getActivity(), COLUMN_COUNT);
+
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(lLayout);
+        recyclerViewAdapter = new RecyclerViewAdapter(getActivity(), tamilNewsList);
+        recyclerView.setAdapter(recyclerViewAdapter);
+
         return rootView;
     }
 
+    private List<NewsObject> getAllItemList() {
+        List<NewsObject> allItems = new ArrayList<NewsObject>();
+        allItems.add(new NewsObject(getResources().getString(R.string.manorama_mal), getResources().getString(R.string.manorama_mal_url), R.drawable.manorma_icon, ContextCompat.getColor(getActivity(), R.color.tile1)));
+        allItems.add(new NewsObject(getResources().getString(R.string.matrubhumi_mal), getResources().getString(R.string.matrubhumi_mal_url), R.drawable.mathrubhumi_icon, ContextCompat.getColor(getActivity(), R.color.tile2)));
+        allItems.add(new NewsObject(getResources().getString(R.string.deshabhimani_mal), getResources().getString(R.string.deshabhimani_mal_url), R.drawable.deshabhimani_icon, ContextCompat.getColor(getActivity(), R.color.tile3)));
+        allItems.add(new NewsObject(getResources().getString(R.string.madhyamam_mal), getResources().getString(R.string.madhyamam_mal_url), R.drawable.madhaym_icon, ContextCompat.getColor(getActivity(), R.color.tile4)));
+        allItems.add(new NewsObject(getResources().getString(R.string.keralaKaumudi_mal), getResources().getString(R.string.keralaKaumudi_mal_url), R.drawable.keralakamudi_icon, ContextCompat.getColor(getActivity(), R.color.tile5)));
+        allItems.add(new NewsObject(getResources().getString(R.string.mangalam_mal), getResources().getString(R.string.mangalam_mal_url), R.drawable.mangalam_icon, ContextCompat.getColor(getActivity(), R.color.tile6)));
+        allItems.add(new NewsObject(getResources().getString(R.string.aajtak_hi), getResources().getString(R.string.aajtak_hi_url), R.drawable.aajtak_icon, ContextCompat.getColor(getActivity(), R.color.tile3)));
+        allItems.add(new NewsObject(getResources().getString(R.string.ndtv_hi), getResources().getString(R.string.ndtv_hi_url), R.drawable.ndtvindi_hi_icon, ContextCompat.getColor(getActivity(), R.color.tile4)));
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.iManorama:
-                intent.putExtra("NEWS_URL","http://www.manoramaonline.com/");
-                intent.putExtra("NEWS_TITLE",getResources().getString(R.string.manorama_mal));
-                startActivity(intent);
-                // do your code
-                break;
-
-            case R.id.iMatrubhumi:
-                intent.putExtra("NEWS_URL","http://www.mathrubhumi.com/mobile/");
-                intent.putExtra("NEWS_TITLE",getResources().getString(R.string.matrubhumi_mal));
-                startActivity(intent);
-                // do your code
-                break;
-            case R.id.iDeshabhimani:
-                intent.putExtra("NEWS_URL","http://www.deshabhimani.com/");
-                intent.putExtra("NEWS_TITLE",getResources().getString(R.string.deshabhimani_mal));
-                startActivity(intent);
-                break;
-            case R.id.iMadhyamam:
-                intent.putExtra("NEWS_URL","http://www.madhyamam.com/en/");
-                intent.putExtra("NEWS_TITLE",getResources().getString(R.string.madhyamam_mal));
-                startActivity(intent);
-                break;
-            case R.id.iKerlakaumudi:
-                intent.putExtra("NEWS_URL","http://news.keralakaumudi.com/beta/mobile/");
-                intent.putExtra("NEWS_TITLE",getResources().getString(R.string.keralaKaumudi_mal));
-                startActivity(intent);
-                break;
-            case R.id.iMangalam:
-                intent.putExtra("NEWS_URL","http://www.mangalam.com/");
-                intent.putExtra("NEWS_TITLE",getResources().getString(R.string.mangalam_mal));
-                startActivity(intent);
-                break;
-            default:
-                break;
-        }
-
+        return allItems;
     }
+
 }

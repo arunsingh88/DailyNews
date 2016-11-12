@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new HindiNews(), "HINDI");
         adapter.addFragment(new EnglishFragment(), "ENGLISH");
-        //adapter.addFragment(new TamilFragment(), "TAMIL");
+        adapter.addFragment(new TamilFragment(), "TAMIL");
         adapter.addFragment(new MalyalamFragment(), "MALAYALAM");
         viewPager.setPageTransformer(false, new FadePageTransformer());
         viewPager.setAdapter(adapter);

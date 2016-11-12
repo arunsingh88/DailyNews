@@ -4,7 +4,6 @@
     <string name="action_share">Share</string>
     <string name="banner_home_footer">ca-app-pub-9708395996794900/1311500071</string>
 
-
     <!--Hindi News Paper-->
     <string name="amar_ujala_hi">अमर उजाला</string>
     <string name="dainik_jagran_hi">दैनिक जागरण</string>
@@ -12,6 +11,22 @@
     <string name="navbahrat_times_hi">नवभारत टाइम्स</string>
     <string name="hindustan_hi">हिंदुस्तान</string>
     <string name="rajastahn_patrika">राजस्थान पत्रिका</string>
+    <string name="aajtak_hi">आज तक</string>
+    <string name="ndtv_hi">NDTV इंडिया</string>
+    <string name="abp_hi">एबीपी न्यूज़</string>
+    <string name="zeenews_hi">ज़ी न्यूज़</string>
+
+    <string name="amar_ujala_hi_url">"http://www.amarujala.com/"</string>
+    <string name="dainik_jagran_hi_url">"http://www.jagran.com/"</string>
+    <string name="dainik_bhaskar_hi_url">"http://m.bhaskar.com/"</string>
+    <string name="navbahrat_times_hi_url">"http://m.navbharattimes.indiatimes.com/"</string>
+    <string name="hindustan_hi_url">"http://m.livehindustan.com/"</string>
+    <string name="rajastahn_patrika_url">"http://m.rajasthanpatrika.patrika.com/"</string>
+    <string name="aajtak_hi_url">http://m.aajtak.in/</string>
+    <string name="ndtv_hi_url">http://khabar.ndtv.com/</string>
+    <string name="abp_hi_url">http://abpnews.abplive.in/</string>
+    <string name="zeenews_hi_url">http://zeenews.india.com/</string>
+
 
     <!--English News Paper-->
     <string name="toi_en">TIMES OF INDIA</string>
@@ -20,6 +35,22 @@
     <string name="first_post_en">FIRSTPOST</string>
     <string name="hindu_en">THE HINDU</string>
     <string name="economicTimes_en">THE ECONOMIC TIMES</string>
+    <string name="timesnow_en">TIMES NOW</string>
+    <string name="ndtv_en">NDTV 24X7</string>
+    <string name="indiatoday_en">INDIA TODAY</string>
+    <string name="ibncnn_en">CNN IBN</string>
+
+    <!--English News Paper URL-->
+    <string name="toi_en_url">http://m.timesofindia.com/</string>
+    <string name="hindustan_en_url">http://m.hindustantimes.com/</string>
+    <string name="indian_express_en_url">http://indianexpress.com/</string>
+    <string name="first_post_en_url">http://m.firstpost.com/</string>
+    <string name="hindu_en_url">http://m.thehindu.com/</string>
+    <string name="economicTimes_en_url">http://m.economictimes.com/</string>
+    <string name="timesnow_en_url">http://www.timesnow.tv/</string>
+    <string name="ndtv_en_url">http://m.ndtv.com/</string>
+    <string name="indiatoday_en_url">http://m.indiatoday.in/</string>
+    <string name="ibncnn_en_url">http://www.news18.com/agency/cnn-news18.html</string>
 
     <!--Malyalam Newspaper-->
     <string name="manorama_mal">മലയാള മനോരമ</string>
@@ -29,6 +60,13 @@
     <string name="keralaKaumudi_mal">കേരളകൗമുദി</string>
     <string name="mangalam_mal">മംഗളം</string>
 
+    <!--Malyalam Newspaper_url-->
+    <string name="manorama_mal_url">http://www.manoramaonline.com/</string>
+    <string name="matrubhumi_mal_url">http://www.mathrubhumi.com/mobile/</string>
+    <string name="deshabhimani_mal_url">http://www.deshabhimani.com/</string>
+    <string name="madhyamam_mal_url">http://www.madhyamam.com/en/</string>
+    <string name="keralaKaumudi_mal_url">http://news.keralakaumudi.com/beta/mobile/</string>
+    <string name="mangalam_mal_url">http://www.mangalam.com/</string>
 
     <string name="next">NEXT</string>
     <string name="skip">SKIP</string>
@@ -50,6 +88,4 @@
     <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
     <string name="play_again">Play Again</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

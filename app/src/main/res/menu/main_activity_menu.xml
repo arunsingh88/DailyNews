@@ -4,7 +4,6 @@
         android:id="@+id/action_refresh"
         android:orderInCategory="100"
         android:showAsAction="always"
-        android:icon="@drawable/ic_newspaper_white_18dp"
         android:title="Refresh"/>
     <item
         android:id="@+id/action_settings"

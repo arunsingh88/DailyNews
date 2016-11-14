@@ -15,13 +15,13 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MalyalamFragment extends Fragment {
+public class MalyalamNews extends Fragment {
     private GridLayoutManager lLayout;
     private RecyclerView recyclerView;
     private RecyclerViewAdapter recyclerViewAdapter;
     private int COLUMN_COUNT=2;
 
-    public MalyalamFragment() {
+    public MalyalamNews() {
         // Required empty public constructor
     }
 
@@ -52,8 +52,6 @@ public class MalyalamFragment extends Fragment {
         allItems.add(new NewsObject(getResources().getString(R.string.madhyamam_mal), getResources().getString(R.string.madhyamam_mal_url), R.drawable.madhaym_icon, ContextCompat.getColor(getActivity(), R.color.tile4)));
         allItems.add(new NewsObject(getResources().getString(R.string.keralaKaumudi_mal), getResources().getString(R.string.keralaKaumudi_mal_url), R.drawable.keralakamudi_icon, ContextCompat.getColor(getActivity(), R.color.tile5)));
         allItems.add(new NewsObject(getResources().getString(R.string.mangalam_mal), getResources().getString(R.string.mangalam_mal_url), R.drawable.mangalam_icon, ContextCompat.getColor(getActivity(), R.color.tile6)));
-        allItems.add(new NewsObject(getResources().getString(R.string.aajtak_hi), getResources().getString(R.string.aajtak_hi_url), R.drawable.aajtak_icon, ContextCompat.getColor(getActivity(), R.color.tile3)));
-        allItems.add(new NewsObject(getResources().getString(R.string.ndtv_hi), getResources().getString(R.string.ndtv_hi_url), R.drawable.ndtvindi_hi_icon, ContextCompat.getColor(getActivity(), R.color.tile4)));
 
         return allItems;
     }

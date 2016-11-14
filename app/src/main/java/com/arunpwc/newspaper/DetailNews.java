@@ -1,19 +1,26 @@
 package com.arunpwc.newspaper;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.support.v7.widget.ShareActionProvider;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -30,6 +37,7 @@ public class DetailNews extends AppCompatActivity {
     private AdView adView;
     private Intent sendIntent;
     private ShareActionProvider mShareActionProvider;
+    private TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +56,7 @@ public class DetailNews extends AppCompatActivity {
         adView=(AdView)findViewById(R.id.adView);
         adViewTop=(LinearLayout)findViewById(R.id.adViewTop);
         adViewTop.bringToFront();
+        //textView=(TextView)findViewById(R.id.textView);
 
         // Initialize the Mobile Ads SDK.
         MobileAds.initialize(this, "ca-app-pub-9708395996794900~7358033675");
@@ -58,6 +67,8 @@ public class DetailNews extends AppCompatActivity {
         setTitle(newsTitle);
 
         mWebview.setWebViewClient(new NewsWebViewClient());
+       /* WebSettings settings = mWebview.getSettings();
+        settings.setTextZoom(settings.getTextZoom() + 20);*/
        // mShareActionProvider.setShareIntent(shareNews(currentURL));
         mWebview.setWebChromeClient(new WebChromeClient() {
             public void onProgressChanged(WebView view, final int progress)
@@ -75,8 +86,53 @@ public class DetailNews extends AppCompatActivity {
         mWebview.getSettings().setJavaScriptEnabled(true);
         mWebview.getSettings().setBuiltInZoomControls(true);
         mWebview.loadUrl(newsURL);
-        //mShareActionProvider.setShareIntent(shareNews(currentURL));
+        /*Alert Dialog Box*/
+        //callDialog();
     }
+
+    public void callDialog()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(DetailNews.this);
+        LayoutInflater inflater = DetailNews.this.getLayoutInflater();
+        View layout = inflater.inflate(R.layout.text_font_size, (ViewGroup) findViewById(R.id.linearSeekBar));
+        builder.setView(inflater.inflate(R.layout.text_font_size, null))
+                // Add action buttons
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        // sign in the user ...
+                    }
+                })
+                .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //LoginDialogFragment.this.getDialog().cancel();
+                    }
+                });
+        builder.setTitle("TEXT SIZE");
+        builder.create();
+        builder.show();
+
+        SeekBar sb = (SeekBar)layout.findViewById(R.id.seekBar);
+        textView=(TextView)layout.findViewById(R.id.textView) ;
+        sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
+                //Do something here with new value
+                //textView.setText(progress);
+                textView.setText("Value of : " + progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+    }
+
 
    @Override
    public boolean onCreateOptionsMenu(Menu menu) {
@@ -140,6 +196,7 @@ public class DetailNews extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
+        currentURL=newsURL;
         if (adView != null) {
             adView.resume();
         }

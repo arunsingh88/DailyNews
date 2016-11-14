@@ -76,6 +76,64 @@
     <string name="keralaKaumudi_mal_url">http://news.keralakaumudi.com/beta/mobile/</string>
     <string name="mangalam_mal_url">http://www.mangalam.com/</string>
 
+    <!--Kannada Newspaper-->
+    <string name="kannadaprabha_kan">ಕನ್ನಡಪ್ರಭ</string>
+    <string name="vijayakaranatka_kan">ವಿಜಯ ಕರ್ನಾಟಕ</string>
+    <string name="vijayavani_kan">ವಿಜಯವಾಣಿ </string>
+    <string name="prajavani_kan">ಪ್ರಜಾವಾಣಿ </string>
+    <string name="udayavani_kan">ಉದಯವಾಣಿ </string>
+    <string name="tv9kannada_kan">TV9 ಕರ್ನಾಟಕ </string>
+    <string name="publictv_kan">ಪಬ್ಲಿಕ್ ಟಿವಿ</string>
+    <string name="btvnews_kan">ಬಿ ಟವಿ  ನ್ಯೂಸ್</string>
+
+    <!--Kannada Newspaper URL-->
+    <string name="kannadaprabha_kan_url">http://www.kannadaprabha.com/</string>
+    <string name="vijayakaranatka_kan_url">http://m.vijaykarnataka.com/</string>
+    <string name="vijayavani_kan_url">http://epapervijayavani.in/</string>
+    <string name="prajavani_kan_url">http://m.prajavani.net/</string>
+    <string name="udayavani_kan_url">http://epaper.udayavani.com/</string>
+    <string name="tv9kannada_kan_url">https://m.youtube.com/watch?v=P1Xnsz0YQQE</string>
+    <string name="publictv_kan_url">http://publictv.in/</string>
+    <string name="btvnews_kan_url">http://btvnewslive.com/</string>
+
+    <!--Tamil News Paper-->
+    <string name="paperkaran_tam">பேப்பர்காரன்</string>
+    <string name="vivegam_tam">விவேகம் செய்தி</string>
+    <string name="dinathanthi_tam">தினத்தந்தி</string>
+    <string name="tamilhindu_tam">தி இந்து</string>
+    <string name="dinakaran_tam">தினகரன்</string>
+    <string name="dinamalar_tam">தினமலர்</string>
+    <string name="dinamani_tam">தினமணி</string>
+    <string name="dinaanchal_tam">தினஅஞ்சல்</string>
+
+    <!--Tamil News URL-->
+    <string name="paperkaran_tam_url">http://paperkaran.com/</string>
+    <string name="vivegam_tam_url">http://www.vivegamnews.com/</string>
+    <string name="dinathanthi_tam_url">http://m.dailythanthi.com/</string>
+    <string name="tamilhindu_tam_url">http://m.tamil.thehindu.com/</string>
+    <string name="dinakaran_tam_url">http://m.dinakaran.com/</string>
+    <string name="dinamalar_tam_url">http://m.dinamalar.com/</string>
+    <string name="dinamani_tam_url">http://www.dinamani.com/</string>
+    <string name="dinaanchal_tam_url">http://www.dinaanchal.com/?m=1</string>
+
+    <!--Telugu News Channel-->
+    <string name="eenadu_telu">ఈనాడు</string>
+    <string name="andhranews_telu">ఆంధ్ర భూమి</string>
+    <string name="andhraJyothi_telu">ఆంధ్ర జ్యోతి</string>
+    <string name="surayaa_telu">Surayaa</string>
+    <string name="andrhaprabha_telu">Andrhaprabha</string>
+    <string name="sakshi_telu">sakshi</string>
+    <string name="prajasakti_telu">prajasakti</string>
+
+    <!--Telugu News channel url-->
+    <string name="eenadu_telu_url">http://www.eenadu.net/</string>
+    <string name="andhranews_telu_url">http://www.andhrabhoomi.net/</string>
+    <string name="andhraJyothi_telu_url">http://www.andhrajyothy.com/</string>
+    <string name="surayaa_telu_url">http://epaper.suryaa.com/</string>
+    <string name="andrhaprabha_telu_url">http://epaper.prabhanews.com/</string>
+    <string name="sakshi_telu_url">http://www.sakshi.com/</string>
+    <string name="prajasakti_telu_url">http://www.prajasakti.com/</string>
+
     <string name="next">NEXT</string>
     <string name="skip">SKIP</string>
     <string name="start">GOT IT</string>
@@ -95,5 +153,8 @@
 
     <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
     <string name="play_again">Play Again</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

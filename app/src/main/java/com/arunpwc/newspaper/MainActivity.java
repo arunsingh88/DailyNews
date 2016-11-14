@@ -20,15 +20,17 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.arunpwc.newspaper.newsfragment.EnglishFragment;
+import com.arunpwc.newspaper.newsfragment.EnglishNews;
 import com.arunpwc.newspaper.newsfragment.HindiNews;
-import com.arunpwc.newspaper.newsfragment.MalyalamFragment;
-import com.arunpwc.newspaper.newsfragment.TamilFragment;
+import com.arunpwc.newspaper.newsfragment.KannadaNews;
+import com.arunpwc.newspaper.newsfragment.MalyalamNews;
+import com.arunpwc.newspaper.newsfragment.TamilNews;
+import com.arunpwc.newspaper.newsfragment.TeluguNews;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private AdView adView;
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -52,11 +55,20 @@ public class MainActivity extends AppCompatActivity {
         if (toolbar != null) {
             setSupportActionBar(toolbar);
         }
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+
+        adView = (AdView) findViewById(R.id.adViewActivity);
+        // Initialize the Mobile Ads SDK.
+        MobileAds.initialize(this, "ca-app-pub-9708395996794900~7358033675");
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice("196FCE962C3DC7551A19FD25FC8543D0").build();
+        adView.loadAd(adRequest);
+
 
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
@@ -67,21 +79,11 @@ public class MainActivity extends AppCompatActivity {
                     // gcm successfully registered
                     // now subscribe to `global` topic to receive app wide notifications
                     FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);
-
-                    // displayFirebaseRegId();
-
                 } else if (intent.getAction().equals(Config.PUSH_NOTIFICATION)) {
-                    // new push notification is received
-
                     String message = intent.getStringExtra("message");
-
-                    //Toast.makeText(getApplicationContext(), "Push notification: " + message, Toast.LENGTH_LONG).show();
-
                 }
             }
         };
-
-        //displayFirebaseRegId();
     }
 
 
@@ -101,10 +103,12 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new HindiNews(), getResources().getString(R.string.hindi));
-        adapter.addFragment(new EnglishFragment(), getResources().getString(R.string.english));
-        adapter.addFragment(new TamilFragment(), getResources().getString(R.string.tamil));
-        adapter.addFragment(new MalyalamFragment(), getResources().getString(R.string.malayalam));
-        viewPager.setPageTransformer(false, new FadePageTransformer());
+        adapter.addFragment(new EnglishNews(), getResources().getString(R.string.english));
+        adapter.addFragment(new TamilNews(), getResources().getString(R.string.tamil));
+        adapter.addFragment(new KannadaNews(), getResources().getString(R.string.kannada));
+        adapter.addFragment(new MalyalamNews(), getResources().getString(R.string.malayalam));
+        adapter.addFragment(new TeluguNews(), getResources().getString(R.string.telugu));
+        //viewPager.setPageTransformer(false, new FadePageTransformer());
         viewPager.setAdapter(adapter);
     }
 
@@ -131,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
             default:
                 break;
         }
-
         return true;
     }
 
@@ -147,6 +150,11 @@ public class MainActivity extends AppCompatActivity {
 
         // clear the notification area when the app is opened
         NotificationUtils.clearNotifications(getApplicationContext());
+
+        /*Request for the Ad*/
+        if (adView != null) {
+            adView.resume();
+        }
     }
 
     @Override
@@ -190,5 +198,12 @@ public class MainActivity extends AppCompatActivity {
             view.setScaleX(normalizedposition / 2 + 0.5f);
             view.setScaleY(normalizedposition / 2 + 0.5f);
         }
+    }
+    @Override
+    public void onDestroy() {
+        if (adView != null) {
+            adView.destroy();
+        }
+        super.onDestroy();
     }
 }

@@ -19,7 +19,7 @@ import android.widget.ImageView;
 public class SplashScreen extends AppCompatActivity {
 
     private ImageView imageView;
-    private Integer SPLASH_TIME_OUT = 3000;
+    private Integer SPLASH_TIME_OUT = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +37,10 @@ public class SplashScreen extends AppCompatActivity {
         fadeIn.setInterpolator(new DecelerateInterpolator()); //add this
         fadeIn.setDuration(SPLASH_TIME_OUT);
 
-        Animation fadeOut = new AlphaAnimation(1, 0);
+        /*Animation fadeOut = new AlphaAnimation(1, 0);
         fadeOut.setInterpolator(new AccelerateInterpolator()); //and this
         fadeOut.setStartOffset(2000);
-        fadeOut.setDuration(2000);
+        fadeOut.setDuration(2000);*/
 
         AnimationSet animation = new AnimationSet(false); //change to false
         animation.addAnimation(fadeIn);

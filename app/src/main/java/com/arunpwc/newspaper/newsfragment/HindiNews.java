@@ -52,10 +52,10 @@ public class HindiNews extends Fragment {
         allItems.add(new NewsObject(getResources().getString(R.string.hindustan_hi), getResources().getString(R.string.hindustan_hi_url), R.drawable.hindustan_hindi_icon, ContextCompat.getColor(getActivity(), R.color.tile4)));
         allItems.add(new NewsObject(getResources().getString(R.string.navbahrat_times_hi), getResources().getString(R.string.navbahrat_times_hi_url), R.drawable.navbharat_times_icon, ContextCompat.getColor(getActivity(), R.color.tile5)));
         allItems.add(new NewsObject(getResources().getString(R.string.rajastahn_patrika), getResources().getString(R.string.rajastahn_patrika_url), R.drawable.rajasthan_patrika_icon, ContextCompat.getColor(getActivity(), R.color.tile6)));
-        allItems.add(new NewsObject(getResources().getString(R.string.aajtak_hi), getResources().getString(R.string.aajtak_hi_url), R.drawable.aajtak_icon, ContextCompat.getColor(getActivity(), R.color.tile3)));
-        allItems.add(new NewsObject(getResources().getString(R.string.ndtv_hi), getResources().getString(R.string.ndtv_hi_url), R.drawable.ndtvindi_hi_icon, ContextCompat.getColor(getActivity(), R.color.tile4)));
-        allItems.add(new NewsObject(getResources().getString(R.string.abp_hi), getResources().getString(R.string.abp_hi_url), R.drawable.abpnews_icon, ContextCompat.getColor(getActivity(), R.color.tile1)));
-        allItems.add(new NewsObject(getResources().getString(R.string.zeenews_hi), getResources().getString(R.string.zeenews_hi_url), R.drawable.zeenews_icon, ContextCompat.getColor(getActivity(), R.color.tile2)));
+        allItems.add(new NewsObject(getResources().getString(R.string.aajtak_hi), getResources().getString(R.string.aajtak_hi_url), R.drawable.aajtak_icon, ContextCompat.getColor(getActivity(), R.color.tile1)));
+        allItems.add(new NewsObject(getResources().getString(R.string.ndtv_hi), getResources().getString(R.string.ndtv_hi_url), R.drawable.ndtvindi_hi_icon, ContextCompat.getColor(getActivity(), R.color.tile2)));
+        allItems.add(new NewsObject(getResources().getString(R.string.abp_hi), getResources().getString(R.string.abp_hi_url), R.drawable.abpnews_icon, ContextCompat.getColor(getActivity(), R.color.tile3)));
+        allItems.add(new NewsObject(getResources().getString(R.string.zeenews_hi), getResources().getString(R.string.zeenews_hi_url), R.drawable.zeenews_icon, ContextCompat.getColor(getActivity(), R.color.tile4)));
 
         return allItems;
     }

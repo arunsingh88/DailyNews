@@ -16,6 +16,8 @@ import android.view.animation.AnimationSet;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 
+import com.mikhaellopez.circularprogressbar.CircularProgressBar;
+
 public class SplashScreen extends AppCompatActivity {
 
     private ImageView imageView;
@@ -36,15 +38,8 @@ public class SplashScreen extends AppCompatActivity {
         Animation fadeIn = new AlphaAnimation(0, 1);
         fadeIn.setInterpolator(new DecelerateInterpolator()); //add this
         fadeIn.setDuration(SPLASH_TIME_OUT);
-
-        /*Animation fadeOut = new AlphaAnimation(1, 0);
-        fadeOut.setInterpolator(new AccelerateInterpolator()); //and this
-        fadeOut.setStartOffset(2000);
-        fadeOut.setDuration(2000);*/
-
         AnimationSet animation = new AnimationSet(false); //change to false
         animation.addAnimation(fadeIn);
-        // animation.addAnimation(fadeOut);
         imageView.startAnimation(animation);
 
         new Handler().postDelayed(new Runnable() {
@@ -55,6 +50,9 @@ public class SplashScreen extends AppCompatActivity {
                 finish();
             }
         }, SPLASH_TIME_OUT);
+
+        CircularProgressBar circularProgressBar = (CircularProgressBar)findViewById(R.id.progressBar);
+        circularProgressBar.setProgressWithAnimation(100, SPLASH_TIME_OUT);
 
     }
     /**

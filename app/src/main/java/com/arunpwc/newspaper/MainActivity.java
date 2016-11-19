@@ -5,6 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,14 +26,19 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.arunpwc.newspaper.firebase.Config;
+import com.arunpwc.newspaper.firebase.NotificationUtils;
 import com.arunpwc.newspaper.newsfragment.EnglishNews;
 import com.arunpwc.newspaper.newsfragment.HindiNews;
 import com.arunpwc.newspaper.newsfragment.KannadaNews;
 import com.arunpwc.newspaper.newsfragment.MalyalamNews;
 import com.arunpwc.newspaper.newsfragment.TamilNews;
 import com.arunpwc.newspaper.newsfragment.TeluguNews;
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -44,13 +55,15 @@ public class MainActivity extends AppCompatActivity {
     private AdView adView;
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     private static final String TAG = MainActivity.class.getSimpleName();
+    private AdRequest adRequest;
+    private int REFRESH_RATE_IN_SECONDS = 5;
+    private final Handler refreshHandler = new Handler();
+    private final Runnable refreshRunnable = new RefreshRunnable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //getSupportActionBar().setTitle("DailyNews");
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
@@ -64,11 +77,29 @@ public class MainActivity extends AppCompatActivity {
 
 
         adView = (AdView) findViewById(R.id.adViewActivity);
+        adView.setVisibility(View.GONE);
+
         // Initialize the Mobile Ads SDK.
         MobileAds.initialize(this, "ca-app-pub-9708395996794900~7358033675");
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice("196FCE962C3DC7551A19FD25FC8543D0").build();
+        adRequest = new AdRequest.Builder().addTestDevice("196FCE962C3DC7551A19FD25FC8543D0").build();
         adView.loadAd(adRequest);
+        adView.setAdListener(new AdListener() {
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+                adView.setVisibility(View.GONE);
+                refreshHandler.removeCallbacks(refreshRunnable);
+                refreshHandler.postDelayed(refreshRunnable, REFRESH_RATE_IN_SECONDS * 1000);
+            }
 
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                adView.setVisibility(View.VISIBLE);
+
+            }
+
+        });
 
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
@@ -150,11 +181,11 @@ public class MainActivity extends AppCompatActivity {
 
         // clear the notification area when the app is opened
         NotificationUtils.clearNotifications(getApplicationContext());
-
         /*Request for the Ad*/
         if (adView != null) {
             adView.resume();
         }
+
     }
 
     @Override
@@ -204,6 +235,34 @@ public class MainActivity extends AppCompatActivity {
         if (adView != null) {
             adView.destroy();
         }
+
         super.onDestroy();
+    }
+
+    public void rateMe() {
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("market://details?id=" + this.getPackageName())));
+        } catch (android.content.ActivityNotFoundException e) {
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("http://play.google.com/store/apps/details?id=" + this.getPackageName())));
+        }
+    }
+
+    public boolean checkNetworkStatus() {
+        ConnectivityManager cm =
+                (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+        return isConnected;
+    }
+
+    private class RefreshRunnable implements Runnable {
+        @Override
+        public void run() {
+            adView.loadAd(adRequest);
+        }
     }
 }

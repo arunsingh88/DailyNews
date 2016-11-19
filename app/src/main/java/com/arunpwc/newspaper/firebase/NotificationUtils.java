@@ -1,4 +1,4 @@
-package com.arunpwc.newspaper;
+package com.arunpwc.newspaper.firebase;
 import android.app.ActivityManager;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -17,6 +17,8 @@ import android.support.v4.app.NotificationCompat;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.Patterns;
+
+import com.arunpwc.newspaper.R;
 
 import java.io.IOException;
 import java.io.InputStream;

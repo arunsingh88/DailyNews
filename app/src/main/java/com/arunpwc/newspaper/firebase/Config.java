@@ -1,4 +1,4 @@
-package com.arunpwc.newspaper;
+package com.arunpwc.newspaper.firebase;
 
 /**
  * Created by aruns512 on 08/11/2016.

@@ -1,4 +1,4 @@
-package com.arunpwc.newspaper.service;
+package com.arunpwc.newspaper.firebase;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,9 +7,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 
-import com.arunpwc.newspaper.Config;
 import com.arunpwc.newspaper.MainActivity;
-import com.arunpwc.newspaper.NotificationUtils;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 

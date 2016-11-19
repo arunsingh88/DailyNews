@@ -1,11 +1,10 @@
-package com.arunpwc.newspaper.service;
+package com.arunpwc.newspaper.firebase;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
-import com.arunpwc.newspaper.Config;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {

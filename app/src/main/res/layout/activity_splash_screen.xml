@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/bg_screen4">
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -11,15 +11,34 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="@dimen/img_width_height"
-            android:layout_height="@dimen/img_width_height"
-            android:src="@drawable/ic_newspaper_white_48dp" />
+
+        <RelativeLayout
+            android:id="@+id/relative_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                app:background_progressbar_color="#FFCDD2"
+                app:background_progressbar_width="2dp"
+                app:progressbar_color="#FFF"
+                app:progressbar_width="5dp"
+                android:layout_centerInParent="true" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="@dimen/img_width_height"
+                android:layout_height="@dimen/img_width_height"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_newspaper_white_48dp" />
+
+        </RelativeLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text="@string/app_name"
             android:textColor="@android:color/white"
             android:textSize="@dimen/slide_title"

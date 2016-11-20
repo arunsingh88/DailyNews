@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize the Mobile Ads SDK.
         MobileAds.initialize(this, getResources().getString(R.string.admob_app_id));
-        adRequest = new AdRequest.Builder().addTestDevice("196FCE962C3DC7551A19FD25FC8543D0").build();
+        adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
         adView.setAdListener(new AdListener() {
             @Override

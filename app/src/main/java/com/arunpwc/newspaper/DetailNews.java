@@ -106,7 +106,7 @@ public class DetailNews extends AppCompatActivity {
 
         // Initialize the Mobile Ads SDK.
         MobileAds.initialize(this, getResources().getString(R.string.admob_app_id));
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice("196FCE962C3DC7551A19FD25FC8543D0").build();
+        AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
 
         progressBar.setProgress(0);

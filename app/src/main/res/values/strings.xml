@@ -2,14 +2,19 @@
     <string name="app_name">DailyNews</string>
     <string name="action_rate">Rate App</string>
     <string name="action_share">Share</string>
+    <string name="action_close">Exit</string>
     <string name="dialog_OK">OK</string>
     <string name="error_msg">Internet is not available. Please check the connectivity</string>
+    <string name="splash_screen_desc">News from different parts of world at one place</string>
     <string name="action_zoom">Refresh</string>
     <string name="action_about">About</string>
     <string name="action_refresh">Refresh</string>
     <string name="action_check_updates">Update</string>
     <string name="action_rate_app">Rate this App</string>
-    <string name="banner_home_footer">ca-app-pub-9708395996794900/1311500071</string>
+
+    <!--Admob ad details-->
+    <string name="admob_app_id">ca-app-pub-6264665505773691~8901151769</string>
+    <string name="banner_home_footer">ca-app-pub-6264665505773691/1377884962</string>
 
     <!--Language Support-->
     <string name="english">ENGLISH</string>
@@ -31,6 +36,7 @@
     <string name="abp_hi">एबीपी न्यूज़</string>
     <string name="zeenews_hi">ज़ी न्यूज़</string>
 
+    <!--Hindi News URL-->
     <string name="amar_ujala_hi_url">"http://www.amarujala.com/"</string>
     <string name="dainik_jagran_hi_url">"http://www.jagran.com/"</string>
     <string name="dainik_bhaskar_hi_url">"http://m.bhaskar.com/"</string>
@@ -127,7 +133,7 @@
     <string name="eenadu_telu">ఈనాడు</string>
     <string name="andhranews_telu">ఆంధ్ర భూమి</string>
     <string name="andhraJyothi_telu">ఆంధ్ర జ్యోతి</string>
-    <string name="surayaa_telu">Surayaa</string>
+    <string name="surayaa_telu">సూర్య </string>
     <string name="andrhaprabha_telu">Andrhaprabha</string>
     <string name="sakshi_telu">sakshi</string>
     <string name="prajasakti_telu">prajasakti</string>
@@ -136,30 +142,23 @@
     <string name="eenadu_telu_url">http://www.eenadu.net/</string>
     <string name="andhranews_telu_url">http://www.andhrabhoomi.net/</string>
     <string name="andhraJyothi_telu_url">http://www.andhrajyothy.com/</string>
-    <string name="surayaa_telu_url">http://epaper.suryaa.com/</string>
-    <string name="andrhaprabha_telu_url">http://epaper.prabhanews.com/</string>
+    <string name="surayaa_telu_url">http://www.suryaa.com/</string>
+    <string name="andrhaprabha_telu_url">http://prabhanews.com/</string>
     <string name="sakshi_telu_url">http://www.sakshi.com/</string>
     <string name="prajasakti_telu_url">http://www.prajasakti.com/</string>
 
-    <string name="next">NEXT</string>
-    <string name="skip">SKIP</string>
-    <string name="start">GOT IT</string>
-    <string name="splash_screen_desc">Newspaper from different part of world at one place</string>
+    <!--<string name="about_app_desc">Daily News gets you the latest news updates in 6 different language ;Hindi,English,Tamil,Telugu,Malyalam,Kannada; without you having to go through all those lengthy newspapers and those loud and noisy news channels.
+Just install Daily News and be the most updated with just a tap away.</string>-->
 
-    <string name="slide_1_title">Hello Food!</string>
-    <string name="slide_1_desc">The easiest way to order food from your favourite restaurant!</string>
-
-    <string name="slide_2_title">Movie Tickets</string>
-    <string name="slide_2_desc">Book movie tickets for your family and friends!</string>
-
-    <string name="slide_3_title">Great Discounts</string>
-    <string name="slide_3_desc">Best discounts on every single service we offer!</string>
-
-    <string name="slide_4_title">World Travel</string>
-    <string name="slide_4_desc">Book tickets of any transportation and travel the world!</string>
-
-    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
-    <string name="play_again">Play Again</string>
-
+    <string name="about_app_desc">
+    <![CDATA[
+    <b><font color="#ebebeb">About</font color></b><br>
+    DailyNews gets you the latest news updates in 6 different language.<br>
+    <b>हिन्दी,English,தமிழ்,తెలుగు,മലയാളം,ಕನ್ನಡ</b><br>
+    Without you having to go through all those lengthy newspapers and those loud and noisy news channels.<br>
+    Just install DailyNews and be the most updated with just a tap away.<br><br>
+    <b><font color="#ebebeb">Version:</b></font color>1.0.0<br>
+    ]]>
+    </string>
 
 </resources>

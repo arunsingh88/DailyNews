@@ -4,23 +4,32 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
+import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -31,13 +40,19 @@ public class DetailNews extends AppCompatActivity {
 
     private WebView mWebview;
     private String newsURL, newsTitle, currentURL;
-    private String HASHTAG = " -via " + "market://details?id=" + this.getPackageName();
+    private String HASHTAG ;
+    private Menu menu;
     private ProgressBar progressBar;
     private Bundle bundle;
     private LinearLayout adViewTop;
     private AdView adView;
     private Intent sendIntent;
     private FloatingActionButton fab;
+    private PopupWindow popupWindow;
+    private RelativeLayout relativeLayout;
+    private Boolean isZoom=false;
+    private int ZOOM_CONSTANT=30;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +67,12 @@ public class DetailNews extends AppCompatActivity {
             newsTitle = bundle.getString("NEWS_TITLE");
         }
         /*Setting the current news url*/
+        HASHTAG =" -via " + "https://play.google.com/store/apps/details?id=" + this.getPackageName();
         currentURL = newsURL;
 
         mWebview = (WebView) findViewById(R.id.webView);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        relativeLayout=(RelativeLayout)findViewById(R.id.detail_news);
         adView = (AdView) findViewById(R.id.adView);
         adView.setAdListener(new AdListener() {
             @Override
@@ -88,12 +105,13 @@ public class DetailNews extends AppCompatActivity {
         });
 
         // Initialize the Mobile Ads SDK.
-        MobileAds.initialize(this, "ca-app-pub-9708395996794900~7358033675");
+        MobileAds.initialize(this, getResources().getString(R.string.admob_app_id));
         AdRequest adRequest = new AdRequest.Builder().addTestDevice("196FCE962C3DC7551A19FD25FC8543D0").build();
         adView.loadAd(adRequest);
 
         progressBar.setProgress(0);
         setTitle(newsTitle);
+
         mWebview.setWebViewClient(new NewsWebViewClient());
         mWebview.setWebChromeClient(new WebChromeClient() {
             public void onProgressChanged(WebView view, final int progress) {
@@ -113,6 +131,7 @@ public class DetailNews extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate menu resource file.
+        this.menu=menu;
         getMenuInflater().inflate(R.menu.detail_activity_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
@@ -129,10 +148,19 @@ public class DetailNews extends AppCompatActivity {
                 mWebview.reload();
                 return true;
             case R.id.action_zoom:
-                zoomWebView();
+                if(!isZoom)
+                {
+                    zoominWebview(menu);
+                    isZoom=true;
+                }
+                else
+                {
+                    zoomOutWeview(menu);
+                    isZoom=false;
+                }
                 return true;
             case R.id.action_about:
-                rateMe();
+                aboutApp();
                 return true;
             case R.id.action_check_updates:
                 rateMe();
@@ -218,9 +246,16 @@ public class DetailNews extends AppCompatActivity {
         return isConnected;
     }
 
-    public void zoomWebView() {
-        WebSettings settings = mWebview.getSettings();
-        settings.setTextZoom(settings.getTextZoom() + 20);
+    public void zoominWebview(Menu menu) {
+        menu.getItem(0).setIcon(getResources().getDrawable(R.drawable.ic_zoom_out_white_24dp));
+        mWebview.getSettings().setTextZoom(mWebview.getSettings().getTextZoom() + ZOOM_CONSTANT);
+
+    }
+
+    public void zoomOutWeview(Menu menu)
+    {
+        menu.getItem(0).setIcon(getResources().getDrawable(R.drawable.ic_zoom_in_white_24dp));
+        mWebview.getSettings().setTextZoom(mWebview.getSettings().getTextZoom() - ZOOM_CONSTANT);
     }
 
     public void rateMe() {
@@ -229,9 +264,41 @@ public class DetailNews extends AppCompatActivity {
                     Uri.parse("market://details?id=" + this.getPackageName())));
         } catch (android.content.ActivityNotFoundException e) {
             startActivity(new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("http://play.google.com/store/apps/details?id=" + this.getPackageName())));
+                    Uri.parse("https://play.google.com/store/apps/details?id=" + this.getPackageName())));
         }
     }
 
+    /*Description about app in popup window*/
+    public void aboutApp()
+    {
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        View customView = inflater.inflate(R.layout.about_app,null);
+        // Initialize a new instance of popup window
+        popupWindow = new PopupWindow(
+                customView,
+                LayoutParams.WRAP_CONTENT,
+                LayoutParams.WRAP_CONTENT
+        );
+        ImageButton closeButton = (ImageButton) customView.findViewById(R.id.ib_close);
+        TextView textView=(TextView)customView.findViewById(R.id.tv) ;
+        textView.setText(Html.fromHtml(getResources().getString(R.string.about_app_desc)));
+
+
+        // Set a click listener for the popup window close button
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Dismiss the popup window
+                popupWindow.dismiss();
+            }
+        });
+
+        // Closes the popup window when touch outside.
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setFocusable(true);
+        // Removes default background.
+        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        popupWindow.showAtLocation(relativeLayout, Gravity.CENTER,0,0);
+    }
 
 }

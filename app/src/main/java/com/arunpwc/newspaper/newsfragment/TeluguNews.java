@@ -51,10 +51,8 @@ public class TeluguNews extends Fragment {
         allItems.add(new NewsObject(getResources().getString(R.string.andhraJyothi_telu), getResources().getString(R.string.andhraJyothi_telu_url), R.drawable.andhrajyothy_icon, ContextCompat.getColor(getActivity(), R.color.tile3)));
         allItems.add(new NewsObject(getResources().getString(R.string.surayaa_telu), getResources().getString(R.string.surayaa_telu_url), R.drawable.surya_news_icon, ContextCompat.getColor(getActivity(), R.color.tile4)));
         allItems.add(new NewsObject(getResources().getString(R.string.andrhaprabha_telu), getResources().getString(R.string.andrhaprabha_telu_url), R.drawable.andhraprabha_icon, ContextCompat.getColor(getActivity(), R.color.tile5)));
-        allItems.add(new NewsObject(getResources().getString(R.string.sakshi_telu), getResources().getString(R.string.sakshi_telu_url), R.drawable.sakshi_icon, ContextCompat.getColor(getActivity(), R.color.tile6)));
         allItems.add(new NewsObject(getResources().getString(R.string.prajasakti_telu), getResources().getString(R.string.prajasakti_telu_url), R.drawable.prajasakthi_icon, ContextCompat.getColor(getActivity(), R.color.tile1)));
-
-
+        allItems.add(new NewsObject(getResources().getString(R.string.sakshi_telu), getResources().getString(R.string.sakshi_telu_url), R.drawable.sakshi_icon, ContextCompat.getColor(getActivity(), R.color.tile6)));
         return allItems;
     }
 

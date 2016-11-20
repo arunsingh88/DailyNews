@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_refresh"
-        android:orderInCategory="100"
-        android:showAsAction="always"
-        android:title="Refresh"/>
+        android:id="@+id/action_rate"
+        android:icon="@drawable/ic_star_border_white_24dp"
+        android:title="@string/action_rate"
+        app:showAsAction="ifRoom" />
+    <!--Close app-->
     <item
-        android:id="@+id/action_settings"
-        android:title="Settings">
-    </item>
+        android:id="@+id/action_close"
+        android:icon="@drawable/ic_close_white_24dp"
+        android:title="@string/action_close"
+        app:showAsAction="ifRoom" />
+    <!-- Check updates -->
+    <item
+        android:id="@+id/action_check_updates"
+        android:showAsAction="never"
+        android:title="@string/action_about" />
 </menu>

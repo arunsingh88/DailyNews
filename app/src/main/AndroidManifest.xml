@@ -17,9 +17,6 @@
         <activity
             android:name=".DetailNews"
             android:theme="@style/AppThemeActionBar" />
-        <activity
-            android:name=".IntroductionActivity"
-            android:theme="@style/AppTheme"></activity>
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

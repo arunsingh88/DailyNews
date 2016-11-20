@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -20,14 +21,23 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.arunpwc.newspaper.firebase.Config;
@@ -52,10 +62,12 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private LinearLayout relativeLayout;
     private AdView adView;
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     private static final String TAG = MainActivity.class.getSimpleName();
     private AdRequest adRequest;
+    private PopupWindow popupWindow;
     private int REFRESH_RATE_IN_SECONDS = 5;
     private final Handler refreshHandler = new Handler();
     private final Runnable refreshRunnable = new RefreshRunnable();
@@ -70,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        relativeLayout=(LinearLayout)findViewById(R.id.main_activity);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -80,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         adView.setVisibility(View.GONE);
 
         // Initialize the Mobile Ads SDK.
-        MobileAds.initialize(this, "ca-app-pub-9708395996794900~7358033675");
+        MobileAds.initialize(this, getResources().getString(R.string.admob_app_id));
         adRequest = new AdRequest.Builder().addTestDevice("196FCE962C3DC7551A19FD25FC8543D0").build();
         adView.loadAd(adRequest);
         adView.setAdListener(new AdListener() {
@@ -154,14 +167,15 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             // action with ID action_refresh was selected
-            case R.id.action_refresh:
-                Toast.makeText(this, "Refresh selected", Toast.LENGTH_SHORT)
-                        .show();
+            case R.id.action_rate:
+                rateMe();
+                break;
+            case R.id.action_close:
+                MainActivity.this.finish();
                 break;
             // action with ID action_settings was selected
-            case R.id.action_settings:
-                Toast.makeText(this, "Settings selected", Toast.LENGTH_SHORT)
-                        .show();
+            case R.id.action_check_updates:
+                aboutApp();
                 break;
             default:
                 break;
@@ -245,8 +259,40 @@ public class MainActivity extends AppCompatActivity {
                     Uri.parse("market://details?id=" + this.getPackageName())));
         } catch (android.content.ActivityNotFoundException e) {
             startActivity(new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("http://play.google.com/store/apps/details?id=" + this.getPackageName())));
+                    Uri.parse("https://play.google.com/store/apps/details?id=" + this.getPackageName())));
         }
+    }
+
+    /*Description about app in popup window*/
+    public void aboutApp()
+    {
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        View customView = inflater.inflate(R.layout.about_app,null);
+        // Initialize a new instance of popup window
+        popupWindow = new PopupWindow(
+                customView,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+        ImageButton closeButton = (ImageButton) customView.findViewById(R.id.ib_close);
+
+        TextView textView=(TextView)customView.findViewById(R.id.tv) ;
+        textView.setText(Html.fromHtml(getResources().getString(R.string.about_app_desc)));
+        // Set a click listener for the popup window close button
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Dismiss the popup window
+                popupWindow.dismiss();
+            }
+        });
+
+        // Closes the popup window when touch outside.
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setFocusable(true);
+        // Removes default background.
+        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        popupWindow.showAtLocation(relativeLayout, Gravity.CENTER,0,0);
     }
 
     public boolean checkNetworkStatus() {

@@ -65,5 +65,4 @@ public class SplashScreen extends AppCompatActivity {
             window.setStatusBarColor(Color.TRANSPARENT);
         }
     }
-
 }

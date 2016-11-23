@@ -32,7 +32,6 @@ public class TamilNews extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_news, container, false);
         List<NewsObject> tamilNewsList = getAllItemList();
-
         lLayout = new GridLayoutManager(getActivity(), COLUMN_COUNT);
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);

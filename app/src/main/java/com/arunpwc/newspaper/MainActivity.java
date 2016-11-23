@@ -82,12 +82,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        relativeLayout=(LinearLayout)findViewById(R.id.main_activity);
+        relativeLayout = (LinearLayout) findViewById(R.id.main_activity);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-
 
         adView = (AdView) findViewById(R.id.adViewActivity);
         adView.setVisibility(View.GONE);
@@ -111,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
                 adView.setVisibility(View.VISIBLE);
 
             }
-
         });
 
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
@@ -134,7 +132,6 @@ public class MainActivity extends AppCompatActivity {
     private void displayFirebaseRegId() {
         SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);
         String regId = pref.getString("regId", null);
-
         Log.e(TAG, "Firebase reg id: " + regId);
 
         if (!TextUtils.isEmpty(regId))
@@ -244,12 +241,12 @@ public class MainActivity extends AppCompatActivity {
             view.setScaleY(normalizedposition / 2 + 0.5f);
         }
     }
+
     @Override
     public void onDestroy() {
         if (adView != null) {
             adView.destroy();
         }
-
         super.onDestroy();
     }
 
@@ -264,10 +261,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*Description about app in popup window*/
-    public void aboutApp()
-    {
+    public void aboutApp() {
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        View customView = inflater.inflate(R.layout.about_app,null);
+        View customView = inflater.inflate(R.layout.about_app, null);
         // Initialize a new instance of popup window
         popupWindow = new PopupWindow(
                 customView,
@@ -276,7 +272,7 @@ public class MainActivity extends AppCompatActivity {
         );
         ImageButton closeButton = (ImageButton) customView.findViewById(R.id.ib_close);
 
-        TextView textView=(TextView)customView.findViewById(R.id.tv) ;
+        TextView textView = (TextView) customView.findViewById(R.id.tv);
         textView.setText(Html.fromHtml(getResources().getString(R.string.about_app_desc)));
         // Set a click listener for the popup window close button
         closeButton.setOnClickListener(new View.OnClickListener() {
@@ -292,17 +288,7 @@ public class MainActivity extends AppCompatActivity {
         popupWindow.setFocusable(true);
         // Removes default background.
         popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        popupWindow.showAtLocation(relativeLayout, Gravity.CENTER,0,0);
-    }
-
-    public boolean checkNetworkStatus() {
-        ConnectivityManager cm =
-                (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        boolean isConnected = activeNetwork != null &&
-                activeNetwork.isConnectedOrConnecting();
-        return isConnected;
+        popupWindow.showAtLocation(relativeLayout, Gravity.CENTER, 0, 0);
     }
 
     private class RefreshRunnable implements Runnable {

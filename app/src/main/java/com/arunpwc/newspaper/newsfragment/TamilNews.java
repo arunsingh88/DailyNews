@@ -46,7 +46,7 @@ public class TamilNews extends Fragment {
 
     private List<NewsObject> getAllItemList() {
         List<NewsObject> allItems = new ArrayList<NewsObject>();
-        allItems.add(new NewsObject(getResources().getString(R.string.paperkaran_tam), getResources().getString(R.string.paperkaran_tam_url), R.drawable.paperkaran_icon, ContextCompat.getColor(getActivity(), R.color.tile1)));
+        //allItems.add(new NewsObject(getResources().getString(R.string.paperkaran_tam), getResources().getString(R.string.paperkaran_tam_url), R.drawable.paperkaran_icon, ContextCompat.getColor(getActivity(), R.color.tile1)));
         allItems.add(new NewsObject(getResources().getString(R.string.dinathanthi_tam), getResources().getString(R.string.dinathanthi_tam_url), R.drawable.dinathathi_icon, ContextCompat.getColor(getActivity(), R.color.tile2)));
         allItems.add(new NewsObject(getResources().getString(R.string.vivegam_tam), getResources().getString(R.string.vivegam_tam_url), R.drawable.vivegamnews_icon, ContextCompat.getColor(getActivity(), R.color.tile3)));
         allItems.add(new NewsObject(getResources().getString(R.string.tamilhindu_tam), getResources().getString(R.string.tamilhindu_tam_url), R.drawable.thehindhutamil_icon, ContextCompat.getColor(getActivity(), R.color.tile4)));

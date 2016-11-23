@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageButton;
@@ -39,6 +40,7 @@ import com.google.android.gms.ads.MobileAds;
 public class DetailNews extends AppCompatActivity {
 
     private WebView mWebview;
+    private WebSettings webSettings;
     private String newsURL, newsTitle, currentURL;
     private String HASHTAG ;
     private Menu menu;
@@ -112,7 +114,13 @@ public class DetailNews extends AppCompatActivity {
         progressBar.setProgress(0);
         setTitle(newsTitle);
 
+        /*Configuring the webview*/
+        webSettings=mWebview.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setBuiltInZoomControls(true);
+
         mWebview.setWebViewClient(new NewsWebViewClient());
+        mWebview.setLayerType(View.LAYER_TYPE_HARDWARE, null);
         mWebview.setWebChromeClient(new WebChromeClient() {
             public void onProgressChanged(WebView view, final int progress) {
                 if (progress == 100) {
@@ -123,8 +131,6 @@ public class DetailNews extends AppCompatActivity {
             }
         });
 
-        mWebview.getSettings().setJavaScriptEnabled(true);
-        mWebview.getSettings().setBuiltInZoomControls(true);
         mWebview.loadUrl(newsURL);
     }
 
@@ -248,14 +254,14 @@ public class DetailNews extends AppCompatActivity {
 
     public void zoominWebview(Menu menu) {
         menu.getItem(0).setIcon(getResources().getDrawable(R.drawable.ic_zoom_out_white_24dp));
-        mWebview.getSettings().setTextZoom(mWebview.getSettings().getTextZoom() + ZOOM_CONSTANT);
+        webSettings.setTextZoom(webSettings.getTextZoom() + ZOOM_CONSTANT);
 
     }
 
     public void zoomOutWeview(Menu menu)
     {
         menu.getItem(0).setIcon(getResources().getDrawable(R.drawable.ic_zoom_in_white_24dp));
-        mWebview.getSettings().setTextZoom(mWebview.getSettings().getTextZoom() - ZOOM_CONSTANT);
+        webSettings.setTextZoom(webSettings.getTextZoom() - ZOOM_CONSTANT);
     }
 
     public void rateMe() {

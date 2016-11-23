@@ -134,9 +134,9 @@
     <string name="andhranews_telu">ఆంధ్ర భూమి</string>
     <string name="andhraJyothi_telu">ఆంధ్ర జ్యోతి</string>
     <string name="surayaa_telu">సూర్య </string>
-    <string name="andrhaprabha_telu">Andrhaprabha</string>
-    <string name="sakshi_telu">sakshi</string>
-    <string name="prajasakti_telu">prajasakti</string>
+    <string name="andrhaprabha_telu">ఆంధ్రప్రభ</string>
+    <string name="sakshi_telu">సాక్షి</string>
+    <string name="prajasakti_telu">ప్రజాశక్తి</string>
 
     <!--Telugu News channel url-->
     <string name="eenadu_telu_url">http://www.eenadu.net/</string>

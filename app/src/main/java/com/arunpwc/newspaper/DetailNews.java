@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -119,8 +120,14 @@ public class DetailNews extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true);
         webSettings.setBuiltInZoomControls(true);
 
+        if (Build.VERSION.SDK_INT >= 19) {
+            mWebview.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+        }
+        else {
+            mWebview.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        }
         mWebview.setWebViewClient(new NewsWebViewClient());
-        mWebview.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+
         mWebview.setWebChromeClient(new WebChromeClient() {
             public void onProgressChanged(WebView view, final int progress) {
                 if (progress == 100) {

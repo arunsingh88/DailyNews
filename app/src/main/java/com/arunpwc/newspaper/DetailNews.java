@@ -43,7 +43,7 @@ public class DetailNews extends AppCompatActivity {
     private WebView mWebview;
     private WebSettings webSettings;
     private String newsURL, newsTitle, currentURL;
-    private String HASHTAG ;
+    private String HASHTAG;
     private Menu menu;
     private ProgressBar progressBar;
     private Bundle bundle;
@@ -53,8 +53,8 @@ public class DetailNews extends AppCompatActivity {
     private FloatingActionButton fab;
     private PopupWindow popupWindow;
     private RelativeLayout relativeLayout;
-    private Boolean isZoom=false;
-    private int ZOOM_CONSTANT=30;
+    private Boolean isZoom = false;
+    private int ZOOM_CONSTANT = 30;
 
 
     @Override
@@ -67,15 +67,15 @@ public class DetailNews extends AppCompatActivity {
         bundle = getIntent().getExtras();
         if (bundle != null) {
             newsURL = bundle.getString("NEWS_URL");
-            newsTitle = bundle.getString("NEWS_TITLE");
+            newsTitle = bundle.getString("NEWS_TITLE", "DAILYNEWS");
         }
         /*Setting the current news url*/
-        HASHTAG =" -via " + "https://play.google.com/store/apps/details?id=" + this.getPackageName();
+        HASHTAG = " -via " + "https://play.google.com/store/apps/details?id=" + this.getPackageName();
         currentURL = newsURL;
 
         mWebview = (WebView) findViewById(R.id.webView);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        relativeLayout=(RelativeLayout)findViewById(R.id.detail_news);
+        relativeLayout = (RelativeLayout) findViewById(R.id.detail_news);
         adView = (AdView) findViewById(R.id.adView);
         adView.setAdListener(new AdListener() {
             @Override
@@ -116,14 +116,13 @@ public class DetailNews extends AppCompatActivity {
         setTitle(newsTitle);
 
         /*Configuring the webview*/
-        webSettings=mWebview.getSettings();
+        webSettings = mWebview.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setBuiltInZoomControls(true);
 
         if (Build.VERSION.SDK_INT >= 19) {
             mWebview.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-        }
-        else {
+        } else {
             mWebview.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         }
         mWebview.setWebViewClient(new NewsWebViewClient());
@@ -144,7 +143,7 @@ public class DetailNews extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate menu resource file.
-        this.menu=menu;
+        this.menu = menu;
         getMenuInflater().inflate(R.menu.detail_activity_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
@@ -161,15 +160,12 @@ public class DetailNews extends AppCompatActivity {
                 mWebview.reload();
                 return true;
             case R.id.action_zoom:
-                if(!isZoom)
-                {
+                if (!isZoom) {
                     zoominWebview(menu);
-                    isZoom=true;
-                }
-                else
-                {
+                    isZoom = true;
+                } else {
                     zoomOutWeview(menu);
-                    isZoom=false;
+                    isZoom = false;
                 }
                 return true;
             case R.id.action_about:
@@ -265,8 +261,7 @@ public class DetailNews extends AppCompatActivity {
 
     }
 
-    public void zoomOutWeview(Menu menu)
-    {
+    public void zoomOutWeview(Menu menu) {
         menu.getItem(0).setIcon(getResources().getDrawable(R.drawable.ic_zoom_in_white_24dp));
         webSettings.setTextZoom(webSettings.getTextZoom() - ZOOM_CONSTANT);
     }
@@ -282,10 +277,9 @@ public class DetailNews extends AppCompatActivity {
     }
 
     /*Description about app in popup window*/
-    public void aboutApp()
-    {
+    public void aboutApp() {
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        View customView = inflater.inflate(R.layout.about_app,null);
+        View customView = inflater.inflate(R.layout.about_app, null);
         // Initialize a new instance of popup window
         popupWindow = new PopupWindow(
                 customView,
@@ -293,7 +287,7 @@ public class DetailNews extends AppCompatActivity {
                 LayoutParams.WRAP_CONTENT
         );
         ImageButton closeButton = (ImageButton) customView.findViewById(R.id.ib_close);
-        TextView textView=(TextView)customView.findViewById(R.id.tv) ;
+        TextView textView = (TextView) customView.findViewById(R.id.tv);
         textView.setText(Html.fromHtml(getResources().getString(R.string.about_app_desc)));
 
 
@@ -311,7 +305,7 @@ public class DetailNews extends AppCompatActivity {
         popupWindow.setFocusable(true);
         // Removes default background.
         popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        popupWindow.showAtLocation(relativeLayout, Gravity.CENTER,0,0);
+        popupWindow.showAtLocation(relativeLayout, Gravity.CENTER, 0, 0);
     }
 
 }

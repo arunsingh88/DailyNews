@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/fab_margin"
+    android:paddingBottom="@dimen/fab_margin">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:layout_weight="1.16"
+        android:orientation="vertical"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:padding="4dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@android:drawable/ic_delete"
+            android:scaleType="fitXY" />
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2.50"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:padding="4dp">
+
+        <TextView
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:id="@+id/title"
+            android:text="kjcnnbe kmsncdlk  wnclknc wcnlkwn sc klsncf , cw slkcnlk"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/pubDate"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="ksdclk   khn"
+            android:layout_weight="1"
+            android:maxLines="3"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,4 +1,4 @@
-package com.arunpwc.newspaper.newsfragment;
+package com.arunpwc.newspaper.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,20 +12,22 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.arunpwc.newspaper.DetailNews;
 import com.arunpwc.newspaper.R;
+import com.arunpwc.newspaper.model.NewspaperModel;
+
 import java.util.List;
 
 /**
  * Created by aruns512 on 10/11/2016.
  */
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewHolders> {
+public class NewspaperAdapter extends RecyclerView.Adapter<NewspaperAdapter.RecyclerViewHolders> {
 
-    private List<NewsObject> itemList;
+    private List<NewspaperModel> itemList;
     private Context context;
     private String newsURL;
     private Intent intent;
 
-    public RecyclerViewAdapter(Context context, List<NewsObject> itemList) {
+    public NewspaperAdapter(Context context, List<NewspaperModel> itemList) {
         this.itemList = itemList;
         this.context = context;
     }

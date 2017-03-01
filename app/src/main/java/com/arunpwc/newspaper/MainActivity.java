@@ -7,11 +7,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.Build;
-import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -31,23 +27,17 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.arunpwc.newspaper.firebase.Config;
 import com.arunpwc.newspaper.firebase.NotificationUtils;
-import com.arunpwc.newspaper.newsfragment.EnglishNews;
-import com.arunpwc.newspaper.newsfragment.HindiNews;
-import com.arunpwc.newspaper.newsfragment.KannadaNews;
-import com.arunpwc.newspaper.newsfragment.MalyalamNews;
-import com.arunpwc.newspaper.newsfragment.TamilNews;
-import com.arunpwc.newspaper.newsfragment.TeluguNews;
+import com.arunpwc.newspaper.fragment.NewsFragment;
+import com.arunpwc.newspaper.fragment.NewspaperFragment;
+import com.arunpwc.newspaper.provider.NewspaperData;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -68,9 +58,11 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private AdRequest adRequest;
     private PopupWindow popupWindow;
-    private int REFRESH_RATE_IN_SECONDS = 5;
+    private Fragment headlines, city, sports, entertainment, technology, business, health, world, science;
+
+   /* private int REFRESH_RATE_IN_SECONDS = 5;
     private final Handler refreshHandler = new Handler();
-    private final Runnable refreshRunnable = new RefreshRunnable();
+    private final Runnable refreshRunnable = new RefreshRunnable();*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,8 +92,9 @@ public class MainActivity extends AppCompatActivity {
             public void onAdFailedToLoad(int i) {
                 super.onAdFailedToLoad(i);
                 adView.setVisibility(View.GONE);
-                refreshHandler.removeCallbacks(refreshRunnable);
-                refreshHandler.postDelayed(refreshRunnable, REFRESH_RATE_IN_SECONDS * 1000);
+                // adView.loadAd(adRequest);
+                /*refreshHandler.removeCallbacks(refreshRunnable);
+                refreshHandler.postDelayed(refreshRunnable, REFRESH_RATE_IN_SECONDS * 1000);*/
             }
 
             @Override
@@ -143,12 +136,37 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new HindiNews(), getResources().getString(R.string.hindi));
-        adapter.addFragment(new EnglishNews(), getResources().getString(R.string.english));
-        adapter.addFragment(new TamilNews(), getResources().getString(R.string.tamil));
-        adapter.addFragment(new KannadaNews(), getResources().getString(R.string.kannada));
-        adapter.addFragment(new MalyalamNews(), getResources().getString(R.string.malayalam));
-        adapter.addFragment(new TeluguNews(), getResources().getString(R.string.telugu));
+
+        NewspaperData newspaperData = new NewspaperData(this);
+
+        adapter.addFragment(NewspaperFragment.getInstance(newspaperData.getAllItemList("hindi")), getResources().getString(R.string.hindi));
+        adapter.addFragment(NewspaperFragment.getInstance(newspaperData.getAllItemList("english")), getResources().getString(R.string.english));
+        adapter.addFragment(NewspaperFragment.getInstance(newspaperData.getAllItemList("tamil")), getResources().getString(R.string.tamil));
+        adapter.addFragment(NewspaperFragment.getInstance(newspaperData.getAllItemList("kannada")), getResources().getString(R.string.kannada));
+        adapter.addFragment(NewspaperFragment.getInstance(newspaperData.getAllItemList("malayalam")), getResources().getString(R.string.malayalam));
+        adapter.addFragment(NewspaperFragment.getInstance(newspaperData.getAllItemList("telugu")), getResources().getString(R.string.telugu));
+
+
+        headlines = NewsFragment.newInstance("n");
+        city = NewsFragment.newInstance("n");
+        sports = NewsFragment.newInstance("s");
+        entertainment = NewsFragment.newInstance("e");
+        business = NewsFragment.newInstance("b");
+        world = NewsFragment.newInstance("w");
+        health = NewsFragment.newInstance("m");
+        science = NewsFragment.newInstance("snc");
+        technology = NewsFragment.newInstance("tc");
+
+
+        adapter.addFragment(headlines, getResources().getString(R.string.headlines));
+        adapter.addFragment(city, getResources().getString(R.string.city));
+        adapter.addFragment(sports, getResources().getString(R.string.sports));
+        adapter.addFragment(world, getResources().getString(R.string.world));
+        adapter.addFragment(business, getResources().getString(R.string.business));
+        adapter.addFragment(science, getResources().getString(R.string.science));
+        adapter.addFragment(technology, getResources().getString(R.string.technology));
+        adapter.addFragment(entertainment, getResources().getString(R.string.entertainment));
+        adapter.addFragment(health, getResources().getString(R.string.health));
         //viewPager.setPageTransformer(false, new FadePageTransformer());
         viewPager.setAdapter(adapter);
     }
@@ -291,10 +309,11 @@ public class MainActivity extends AppCompatActivity {
         popupWindow.showAtLocation(relativeLayout, Gravity.CENTER, 0, 0);
     }
 
-    private class RefreshRunnable implements Runnable {
+
+    /*private class RefreshRunnable implements Runnable {
         @Override
         public void run() {
             adView.loadAd(adRequest);
         }
-    }
+    }*/
 }

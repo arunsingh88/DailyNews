@@ -5,7 +5,6 @@ Dailynews app is now available on Google Play.
 
 <a href='https://play.google.com/store/apps/details?id=com.arunpwc.newspaper&hl=en&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="200"/></a>
 
-<div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/zvHrk7XX3Fc?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>
 
 ![solarized palette](https://cloud.githubusercontent.com/assets/18736347/24264745/58f0641e-1027-11e7-82fd-15fca7dc1405.png)
 ![solarized vim](https://cloud.githubusercontent.com/assets/18736347/24264750/5903b67c-1027-11e7-864a-93d75161e203.png)

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "773761792239",
+    "firebase_url": "https://dailynews-64bd9.firebaseio.com",
+    "project_id": "dailynews-64bd9",
+    "storage_bucket": "dailynews-64bd9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:773761792239:android:6c61897b66b6afd5",
+        "android_client_info": {
+          "package_name": "com.arunpwc.newspaper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "773761792239-ebqlsv6er49u4hq00lb2ghj5iugcalvt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQ1KS5_zF7Q27VXmd9rtnkcSIuvVj8vHw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

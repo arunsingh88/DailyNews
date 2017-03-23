@@ -3,12 +3,10 @@ Dailynews is best way of reading the most popular newspapers on Android. Read al
 You can download and playaround the app from Playstore
 https://play.google.com/store/apps/details?id=com.arunpwc.newspaper
 
-
- ***See the [changelog] for what's new in the most recent release.***
-
-![solarized palette](https://github.com/altercation/solarized/raw/master/img/solarized-palette.png)
-
-![solarized vim](https://github.com/altercation/solarized/raw/master/img/solarized-vim.png)
+![solarized palette](https://cloud.githubusercontent.com/assets/18736347/24264745/58f0641e-1027-11e7-82fd-15fca7dc1405.png)
+![solarized vim](https://cloud.githubusercontent.com/assets/18736347/24264750/5903b67c-1027-11e7-864a-93d75161e203.png)
+![solarized vim](https://cloud.githubusercontent.com/assets/18736347/24264747/58f4543e-1027-11e7-9a8d-b3f0b7fc148f.png)
+![solarized vim](https://cloud.githubusercontent.com/assets/18736347/24264748/58f4e688-1027-11e7-9160-cf5b3880f195.png)
 
 # License
 Copyright [2017] [Arun Singh]

@@ -75,7 +75,7 @@ public class LanguageSetting extends AppCompatActivity {
             @Override
             public void onItemUncheck(String item) {
                 button.setEnabled(false);
-                Toast.makeText(LanguageSetting.this, "Please select atleast one language", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LanguageSetting.this, "Please select at least one language", Toast.LENGTH_SHORT).show();
             }
         });
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);

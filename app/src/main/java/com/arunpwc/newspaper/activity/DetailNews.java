@@ -1,4 +1,4 @@
-package com.arunpwc.newspaper;
+package com.arunpwc.newspaper.activity;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -33,6 +33,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.arunpwc.newspaper.R;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -235,7 +236,7 @@ public class DetailNews extends AppCompatActivity {
     }
 
     /*Start the Activity */
-    public void loadNewsPaper() {
+    private void loadNewsPaper() {
         if (!checkNetworkStatus()) {
             showDialogOK(getString(R.string.error_msg), getString(R.string.app_name), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
@@ -245,7 +246,7 @@ public class DetailNews extends AppCompatActivity {
         }
     }
 
-    public boolean checkNetworkStatus() {
+    private boolean checkNetworkStatus() {
         ConnectivityManager cm =
                 (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -255,18 +256,18 @@ public class DetailNews extends AppCompatActivity {
         return isConnected;
     }
 
-    public void zoominWebview(Menu menu) {
+    private void zoominWebview(Menu menu) {
         menu.getItem(0).setIcon(getResources().getDrawable(R.drawable.ic_zoom_out_white_24dp));
         webSettings.setTextZoom(webSettings.getTextZoom() + ZOOM_CONSTANT);
 
     }
 
-    public void zoomOutWeview(Menu menu) {
+    private void zoomOutWeview(Menu menu) {
         menu.getItem(0).setIcon(getResources().getDrawable(R.drawable.ic_zoom_in_white_24dp));
         webSettings.setTextZoom(webSettings.getTextZoom() - ZOOM_CONSTANT);
     }
 
-    public void rateMe() {
+    private void rateMe() {
         try {
             startActivity(new Intent(Intent.ACTION_VIEW,
                     Uri.parse("market://details?id=" + this.getPackageName())));
@@ -277,7 +278,7 @@ public class DetailNews extends AppCompatActivity {
     }
 
     /*Description about app in popup window*/
-    public void aboutApp() {
+    private void aboutApp() {
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
         View customView = inflater.inflate(R.layout.about_app, null);
         // Initialize a new instance of popup window

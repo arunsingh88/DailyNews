@@ -158,6 +158,26 @@
     <string name="sakshi_telu_url">http://www.sakshi.com/</string>
     <string name="prajasakti_telu_url">http://www.prajasakti.com/</string>
 
+    <!--Country Supported-->
+    <string-array name="country_list">
+        <item>India</item>
+        <item>Bangladesh</item>
+        <item>Srilanka</item>
+        <item>Pakistan</item>
+        <item>USA</item>
+        <item>UK</item>
+        <item>Nepal</item>
+        <item>Argentina</item>
+        <item>Canada</item>
+        <item>Chile</item>
+        <item>Colombia</item>
+        <item>Cuba</item>
+        <item>Mexico</item>
+        <item>Peru</item>
+        <item>Venezuela</item>
+
+    </string-array>
+
     <!--<string name="about_app_desc">Daily News gets you the latest news updates in 6 different language ;Hindi,English,Tamil,Telugu,Malyalam,Kannada; without you having to go through all those lengthy newspapers and those loud and noisy news channels.
 Just install Daily News and be the most updated with just a tap away.</string>-->
 

@@ -1,9 +1,8 @@
 package com.arunpwc.newspaper.adapter;
 
 /**
- * Created by aruns512 on 25/02/2017.
+ * Created by aruns512 on 24/02/2017.
  */
-
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,13 +10,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.NetworkImageView;
-import com.arunpwc.newspaper.DetailNews;
+import com.arunpwc.newspaper.activity.DetailNews;
 import com.arunpwc.newspaper.R;
 import com.arunpwc.newspaper.model.NewsModel;
 import com.arunpwc.newspaper.util.VolleySingleton;
@@ -26,10 +23,6 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import static com.arunpwc.newspaper.R.mipmap.ic_launcher;
-
-/**
- * Created by aruns512 on 24/02/2017.
- */
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> {
 
@@ -46,7 +39,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View movieView= LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recycler_news_item,parent,false);
+                .inflate(R.layout.news_item_row,parent,false);
         return new MyViewHolder(movieView);
     }
 
@@ -62,7 +55,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
                 .error(ic_launcher)
                 .into(holder.imageView);
 
-      /*  holder.imageView.setAlpha(0f);
+        /*holder.imageView.setAlpha(0f);
         holder.imageView.setImageUrl("http:"+newsModel.getImageURL(),imageLoader);
         holder.imageView.setDefaultImageResId(ic_launcher);
         holder.imageView.setErrorImageResId(ic_launcher);

@@ -7,7 +7,6 @@ import com.arunpwc.newspaper.R;
 import com.arunpwc.newspaper.model.NewspaperModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by aruns512 on 01/03/2017.

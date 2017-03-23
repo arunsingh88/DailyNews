@@ -49,7 +49,7 @@ public class NewspaperFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_news, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_newspaper, container, false);
         List<NewspaperModel> tamilNewsList =newspaperModels;
 
         lLayout = new GridLayoutManager(getActivity(), COLUMN_COUNT);

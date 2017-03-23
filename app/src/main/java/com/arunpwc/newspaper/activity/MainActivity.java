@@ -1,4 +1,4 @@
-package com.arunpwc.newspaper;
+package com.arunpwc.newspaper.activity;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -33,9 +33,10 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.arunpwc.newspaper.R;
 import com.arunpwc.newspaper.firebase.Config;
 import com.arunpwc.newspaper.firebase.NotificationUtils;
-import com.arunpwc.newspaper.fragment.NewsFragment;
+import com.arunpwc.newspaper.fragment.NewsfeedFragment;
 import com.arunpwc.newspaper.fragment.NewspaperFragment;
 import com.arunpwc.newspaper.provider.NewspaperData;
 import com.google.android.gms.ads.AdListener;
@@ -47,11 +48,14 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.preference.PreferenceManager.getDefaultSharedPreferences;
+
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private String LANGUAGE,REGION,CITY;
     private LinearLayout relativeLayout;
     private AdView adView;
     private BroadcastReceiver mRegistrationBroadcastReceiver;
@@ -59,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     private AdRequest adRequest;
     private PopupWindow popupWindow;
     private Fragment headlines, city, sports, entertainment, technology, business, health, world, science;
+    private SharedPreferences sharedPreferences;
 
    /* private int REFRESH_RATE_IN_SECONDS = 5;
     private final Handler refreshHandler = new Handler();
@@ -68,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sharedPreferences=getDefaultSharedPreferences(this);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
@@ -137,25 +143,18 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        NewspaperData newspaperData = new NewspaperData(this);
-
-        adapter.addFragment(NewspaperFragment.getInstance(newspaperData.getAllItemList("hindi")), getResources().getString(R.string.hindi));
-        adapter.addFragment(NewspaperFragment.getInstance(newspaperData.getAllItemList("english")), getResources().getString(R.string.english));
-        adapter.addFragment(NewspaperFragment.getInstance(newspaperData.getAllItemList("tamil")), getResources().getString(R.string.tamil));
-        adapter.addFragment(NewspaperFragment.getInstance(newspaperData.getAllItemList("kannada")), getResources().getString(R.string.kannada));
-        adapter.addFragment(NewspaperFragment.getInstance(newspaperData.getAllItemList("malayalam")), getResources().getString(R.string.malayalam));
-        adapter.addFragment(NewspaperFragment.getInstance(newspaperData.getAllItemList("telugu")), getResources().getString(R.string.telugu));
-
-
-        headlines = NewsFragment.newInstance("n");
-        city = NewsFragment.newInstance("n");
-        sports = NewsFragment.newInstance("s");
-        entertainment = NewsFragment.newInstance("e");
-        business = NewsFragment.newInstance("b");
-        world = NewsFragment.newInstance("w");
-        health = NewsFragment.newInstance("m");
-        science = NewsFragment.newInstance("snc");
-        technology = NewsFragment.newInstance("tc");
+        LANGUAGE=sharedPreferences.getString("LANGUAGE","en");
+        REGION=sharedPreferences.getString("COUNTRY_CODE","");
+        CITY=sharedPreferences.getString("CITY","");
+        headlines = NewsfeedFragment.newInstance("n",LANGUAGE,REGION,"");
+        city = NewsfeedFragment.newInstance("n",LANGUAGE,REGION,CITY);
+        sports = NewsfeedFragment.newInstance("s",LANGUAGE,REGION,"");
+        entertainment = NewsfeedFragment.newInstance("e",LANGUAGE,REGION,"");
+        business = NewsfeedFragment.newInstance("b",LANGUAGE,REGION,"");
+        world = NewsfeedFragment.newInstance("w",LANGUAGE,REGION,"");
+        health = NewsfeedFragment.newInstance("m",LANGUAGE,REGION,"");
+        science = NewsfeedFragment.newInstance("snc",LANGUAGE,REGION,"");
+        technology = NewsfeedFragment.newInstance("tc",LANGUAGE,REGION,"");
 
 
         adapter.addFragment(headlines, getResources().getString(R.string.headlines));
@@ -167,6 +166,15 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(technology, getResources().getString(R.string.technology));
         adapter.addFragment(entertainment, getResources().getString(R.string.entertainment));
         adapter.addFragment(health, getResources().getString(R.string.health));
+
+        NewspaperData newspaperData = new NewspaperData(this);
+        adapter.addFragment(NewspaperFragment.getInstance(newspaperData.getAllItemList("hindi")), getResources().getString(R.string.hindi));
+        adapter.addFragment(NewspaperFragment.getInstance(newspaperData.getAllItemList("english")), getResources().getString(R.string.english));
+        adapter.addFragment(NewspaperFragment.getInstance(newspaperData.getAllItemList("tamil")), getResources().getString(R.string.tamil));
+        adapter.addFragment(NewspaperFragment.getInstance(newspaperData.getAllItemList("kannada")), getResources().getString(R.string.kannada));
+        adapter.addFragment(NewspaperFragment.getInstance(newspaperData.getAllItemList("malayalam")), getResources().getString(R.string.malayalam));
+        adapter.addFragment(NewspaperFragment.getInstance(newspaperData.getAllItemList("telugu")), getResources().getString(R.string.telugu));
+
         //viewPager.setPageTransformer(false, new FadePageTransformer());
         viewPager.setAdapter(adapter);
     }
@@ -252,7 +260,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public class FadePageTransformer implements ViewPager.PageTransformer {
+    private class FadePageTransformer implements ViewPager.PageTransformer {
         public void transformPage(View view, float position) {
             final float normalizedposition = Math.abs(Math.abs(position) - 1);
             view.setScaleX(normalizedposition / 2 + 0.5f);
@@ -268,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    public void rateMe() {
+    private void rateMe() {
         try {
             startActivity(new Intent(Intent.ACTION_VIEW,
                     Uri.parse("market://details?id=" + this.getPackageName())));
@@ -279,7 +287,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*Description about app in popup window*/
-    public void aboutApp() {
+    private void aboutApp() {
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
         View customView = inflater.inflate(R.layout.about_app, null);
         // Initialize a new instance of popup window

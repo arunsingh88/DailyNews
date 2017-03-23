@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.arunpwc.newspaper.DetailNews;
+import com.arunpwc.newspaper.activity.DetailNews;
 import com.arunpwc.newspaper.R;
 import com.arunpwc.newspaper.model.NewspaperModel;
 

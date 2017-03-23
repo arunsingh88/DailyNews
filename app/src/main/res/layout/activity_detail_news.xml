@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:id="@+id/detail_news"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
-    tools:context="com.arunpwc.newspaper.DetailNews">
+    tools:context="com.arunpwc.newspaper.activity.DetailNews">
     <ProgressBar
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="wrap_content"

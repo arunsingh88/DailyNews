@@ -6,10 +6,10 @@ Dailynews app is now available on Google Play.
 <a href='https://play.google.com/store/apps/details?id=com.arunpwc.newspaper&hl=en&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="200"/></a>
 
 # Screenshots
-![solarized vim](https://cloud.githubusercontent.com/assets/18736347/24264745/58f0641e-1027-11e7-82fd-15fca7dc1405.png)
-![solarized vim](https://cloud.githubusercontent.com/assets/18736347/24264750/5903b67c-1027-11e7-864a-93d75161e203.png)
-![solarized vim](https://cloud.githubusercontent.com/assets/18736347/24264747/58f4543e-1027-11e7-9a8d-b3f0b7fc148f.png)
-![solarized vim](https://cloud.githubusercontent.com/assets/18736347/24264748/58f4e688-1027-11e7-9160-cf5b3880f195.png)
+![android screenshot 1](https://cloud.githubusercontent.com/assets/18736347/24268411/bb2754c4-1033-11e7-9fc3-e45d1e0fcd86.png)
+![android screenshot 2](https://cloud.githubusercontent.com/assets/18736347/24268413/bb2a2b9a-1033-11e7-88a6-af79c073d566.png)
+![android screenshot 3](https://cloud.githubusercontent.com/assets/18736347/24268415/bb378e70-1033-11e7-9f69-f8104d3ff705.png)
+![android screenshot 4](https://cloud.githubusercontent.com/assets/18736347/24268412/bb28130a-1033-11e7-9fa2-2fac920d9e31.png)
 
 # License
 Copyright [2017] [Arun Singh]

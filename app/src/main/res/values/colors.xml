@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#29B6F6</color>
-    <color name="colorPrimaryDark">#039BE5</color>
-    <color name="colorPrimaryDark_transparent">#BF303F9F</color>
+    <color name="colorPrimary">#009688</color>
+    <color name="colorPrimaryDark">#00897b</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="text_color">#FFFFFF</color>
-    <!--Tiles Color-->
-    <color name="splash_screen">#c873f4</color>
     <color name="popup_window">#BF000000</color>
-    <color name="tile1">#BF3395ff</color>
-    <color name="tile2">#BFd1395c</color>
-    <color name="tile3">#75FF9800</color>
-    <color name="tile4">#75009688</color>
-    <color name="tile5">#75F44336</color>
-    <color name="tile6">#75795548</color>
+    <color name="gradientColor">#4db6ac</color>
+    <color name="tabColor">#26a69a</color>
 </resources>

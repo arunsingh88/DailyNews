@@ -1,6 +1,7 @@
 package com.arunpwc.newspaper.activity;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -12,8 +13,10 @@ import android.location.LocationListener;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -78,20 +81,25 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void run() {
                 location = new TrackGPS(SplashScreen.this).getLocation();
-                getCityName(location, new OnGeocoderFinishedListener() {
-                    @Override
-                    public void onFinished(List<Address> results) {
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("CITY", results.get(0).getLocality() + "," + results.get(0).getAdminArea());
-                        editor.putString("COUNTRY_CODE", results.get(0).getCountryCode().toLowerCase());
-                        Toast.makeText(SplashScreen.this, results.get(0).getLocality() + "," + results.get(0).getAdminArea(), Toast.LENGTH_LONG).show();
-                        editor.commit();
+                if (location == null) {
+                    showSettingsAlert();
 
-                        Intent intent = new Intent(SplashScreen.this, LanguageSetting.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                });
+                } else {
+                    getCityName(location, new OnGeocoderFinishedListener() {
+                        @Override
+                        public void onFinished(List<Address> results) {
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("CITY", results.get(0).getLocality() + "," + results.get(0).getAdminArea());
+                            editor.putString("COUNTRY_CODE", results.get(0).getCountryCode().toLowerCase());
+                            Toast.makeText(SplashScreen.this, results.get(0).getLocality() + "," + results.get(0).getAdminArea(), Toast.LENGTH_LONG).show();
+                            editor.commit();
+
+                            Intent intent = new Intent(SplashScreen.this, LanguageSetting.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                }
             }
         }, SPLASH_TIME_OUT);
 
@@ -132,6 +140,28 @@ public class SplashScreen extends AppCompatActivity {
                 }
             }
         }.execute();
+
+
+    }
+
+    public void showSettingsAlert() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle("GPS NOT ENABLED");
+        alertDialog.setMessage("ENABLE GPS FROM SETTINGS");
+        alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                SplashScreen.this.startActivity(intent);
+            }
+        });
+
+        alertDialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        alertDialog.show();
     }
 
 
